@@ -27,13 +27,13 @@ export default function App() {
     }
     
     function updateNote(text) {
-        // Put the most recently-modified note at the top
+
         setNotes(oldNotes => {
             const newArray = []
             for(let i = 0; i < oldNotes.length; i++) {
                 const oldNote = oldNotes[i]
                 if(oldNote.id === currentNoteId) {
-                    newArray.unshift({ ...oldNote, body: text })
+                    newArray.unshift({ id:oldNote.id, body: text })
                 } else {
                     newArray.push(oldNote)
                 }
@@ -42,18 +42,7 @@ export default function App() {
         })
     }
     
-    /**
-     * Challenge: complete and implement the deleteNote function
-     * 
-     * Hints: 
-     * 1. What array method can be used to return a new
-     *    array that has filtered out an item based 
-     *    on a condition?
-     * 2. Notice the parameters being based to the function
-     *    and think about how both of those parameters
-     *    can be passed in during the onClick event handler
-     */
-    
+ 
     function deleteNote(event, noteId) {
         event.stopPropagation()
         const filtered = notes.filter( item => item.id !== noteId)
